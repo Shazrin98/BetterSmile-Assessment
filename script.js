@@ -1,12 +1,5 @@
-// Function to handle image gallery functionality
-function handleImageGallery() {
-  // Implement image slideshow (Functionality 1)
-  // Manage image gallery interaction (Functionality 1)
-}
-
 // Function to adjust price and color based on variation
 function adjustVariation() {
-  // Functionality 2 and 3 - Price and Color adjustment based on variation selected
   $("#size").change(function () {
     const selectedSize = $(this).val()
 
@@ -33,12 +26,10 @@ function adjustVariation() {
 // Function to manage adding product to cart and stock availability
 function manageCart() {
   $("#add-to-cart").click(function () {
-    // Check stock availability (Functionality 5)
     const selectedSize = $("#size").val()
     if (selectedSize === "large") {
       alert("Out of stock. Please choose a different size.")
     } else {
-      // Add to cart (Feature 7)
       alert("Product added to cart successfully!")
     }
   })
@@ -52,17 +43,44 @@ function manageQuantity() {
   })
 }
 
-// Function to handle responsive design
-function responsiveDesign() {
-  // Implement responsive design handling (Functionality 7)
-  // You can write responsive design adjustments based on screen sizes here
+// Function to handle image gallery functionality
+function handleImageGallery() {
+  const galleryItems = document.querySelectorAll(".gallery-item")
+  const imageGallery = document.querySelector(".image-gallery")
+
+  // Function to display selected image in the gallery
+  function displayImage(event) {
+    const selectedImage = event.target
+    const mainImage = document.createElement("img")
+    mainImage.src = selectedImage.src
+    mainImage.alt = selectedImage.alt
+
+    // Clear previous image
+    while (imageGallery.firstChild) {
+      imageGallery.removeChild(imageGallery.firstChild)
+    }
+
+    // Display the selected image as the main image
+    imageGallery.appendChild(mainImage)
+  }
+
+  // Attach event listeners to all images in the gallery
+  galleryItems.forEach((item) => {
+    item.addEventListener("click", displayImage)
+  })
 }
 
-// Document ready function to ensure all DOM elements are loaded before executing the scripts
+// Function to show a modal
+function showModal(message) {
+  // Code to display a modal with the message (use your preferred modal implementation)
+  alert(message) // For simplicity, using an alert as a modal
+}
+
+// Call the necessary functions when the document is ready
 $(document).ready(function () {
   handleImageGallery()
   adjustVariation()
   manageCart()
   manageQuantity()
-  responsiveDesign()
+  responsiveDesign() // This might be defined elsewhere in your code
 })
